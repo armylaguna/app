@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lista de Capitanes — WSPD</title>
+<title>Lista de Capitanes — Ejército de Laguna</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #0a0f0c;
@@ -111,7 +111,7 @@
     font-size: 0.7rem;
     cursor: pointer;
   }
-  .btn-salir-edicion:hover { background: var(--accent); color: #201400; }
+  .btn-salir-edicion:hover { background: var(--accent); color: #06170d; }
   .btn {
     border: 1px solid var(--border);
     background: var(--card);
@@ -126,7 +126,7 @@
   .btn-primario {
     background: var(--accent);
     border-color: var(--accent);
-    color: #201400;
+    color: #06170d;
   }
   .btn-primario:hover { background: var(--accent2); }
   .btn-secundario:hover { border-color: var(--muted); }
@@ -532,9 +532,110 @@
     border: 1px solid var(--border);
     border-top: none;
   }
+
+/* ============================================================
+   HUD RADAR — capa visual añadida (Ejército de Laguna)
+   ============================================================ */
+@keyframes hudSweep { to { transform: rotate(360deg); } }
+@keyframes hudBlip { 0%, 100% { opacity: 0.9; } 50% { opacity: 0.25; } }
+
+body {
+  background-image:
+    linear-gradient(rgba(143,209,79,0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(143,209,79,0.045) 1px, transparent 1px) !important;
+  background-size: 34px 34px !important;
+  background-attachment: fixed;
+}
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.55;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(143,209,79,0.055) 0px,
+    rgba(143,209,79,0.055) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+h1 {
+  font-family: 'Share Tech Mono', 'Bebas Neue', monospace !important;
+  text-shadow: 0 0 6px rgba(143,209,79,0.65), 0 0 22px rgba(143,209,79,0.25);
+}
+.subtitle {
+  font-family: 'Share Tech Mono', monospace !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase;
+  text-shadow: 0 0 6px rgba(143,209,79,0.35);
+}
+.category-title, .roster-title, h2 {
+  font-family: 'Share Tech Mono', monospace !important;
+  letter-spacing: 0.03em;
+}
+thead th, th {
+  font-family: 'Share Tech Mono', monospace !important;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-shadow: 0 0 5px rgba(143,209,79,0.3);
+}
+.btn, .tab, .nav-btn {
+  font-family: 'Share Tech Mono', monospace !important;
+  letter-spacing: 0.05em !important;
+}
+
+/* Radar decorativo fijo — elemento de firma visual */
+.hud-radar {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  width: 96px;
+  height: 96px;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.55;
+}
+.hud-radar .ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(143,209,79,0.28);
+}
+.hud-radar .ring.r1 { inset: 0; }
+.hud-radar .ring.r2 { inset: 18px; }
+.hud-radar .ring.r3 { inset: 36px; }
+.hud-radar .cross {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(143,209,79,0.25), rgba(143,209,79,0.25)) center / 100% 1px no-repeat,
+    linear-gradient(90deg, rgba(143,209,79,0.25), rgba(143,209,79,0.25)) center / 1px 100% no-repeat;
+}
+.hud-radar .sweep {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, rgba(143,209,79,0.55), transparent 28%);
+  animation: hudSweep 4.5s linear infinite;
+}
+.hud-radar .blip {
+  position: absolute;
+  top: 28%;
+  left: 62%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent2);
+  box-shadow: 0 0 6px var(--accent2);
+  animation: hudBlip 2.2s ease-in-out infinite;
+}
+@media (max-width: 640px) { .hud-radar { width: 64px; height: 64px; bottom: 10px; right: 10px; } }
+
 </style>
 </head>
 <body>
+<div class="hud-radar"><div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div><div class="cross"></div><div class="sweep"></div><div class="blip"></div></div>
 
 <h1>
     <img src="3-Capitan.svg" alt="" class="title-icon">
