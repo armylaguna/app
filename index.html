@@ -1752,6 +1752,7 @@ thead th, th {
 /* ============================================================
    DATOS
    ============================================================ */
+/* Sección desactivada — solo comentada, no borrada, para poder reactivarla después.
 const codigos10 = [
 ["10-4","Entendido"],
 ["10-6","Actualmente ocupado"],
@@ -1779,21 +1780,7 @@ const codigos10 = [
 ["10-97","En ruta"],
 ["10-100","Oficial herido"]
 ].map(([code, meaning]) => ({cat:"Códigos 10", code, title:meaning, desc:"", punish:""}));
-
-const codigosCode = [
-["Code 1","Responder sin urgencia, cuando puedas"],
-["Code 2","Urgente, sin luces ni sirena"],
-["Code 3","Urgente, con luces y sirena, máxima velocidad"],
-["Code 4","Situación bajo control, no se necesita más asistencia"],
-["Code 5","Vigilancia en curso, no acercarse"],
-["Code 6","Unidad investigando fuera del vehículo"],
-["Code 7","Fuera de servicio para comer/descanso"],
-["Code 8","Incendio en progreso"],
-["Code 9","Bloqueo de tránsito / cárcel"],
-["Code 10","Bomba o amenaza de bomba"],
-["Code 33","Silencio en la frecuencia, solo tráfico de emergencia"],
-["Code 100","Silencio total, situación crítica"]
-].map(([code, meaning]) => ({cat:"Códigos Code", code, title:meaning, desc:"", punish:""}));
+*/
 
 const infracciones = [
 // Infracción Penal (Delitos Graves)
@@ -1827,25 +1814,38 @@ const infracciones = [
 ];
 
 const macrosGenerales = [
-["TASER", "/do ¡TASER! ¡TASER! ¡TASER! DESPLIEGA UN TASER EN UN SOSPECHOSO."],
-["TASER VEHICULO", "/do ¡TASER! ¡TASER! ¡TASER! ROMPE LA VENTANA Y TASER A UN CIVIL, LUEGO LO SACA DEL VEHÍCULO."],
-["DISPARAR", "/do DISPARAR AL SOSPECHOSO ARMADO / VEHÍCULO PARA PROTEGER A LOS CIUDADANOS, COMPAÑEROS OFICIALES Y A SÍ MISMO."],
-["BAJAR ARMA", "/me ¡BAJE EL ARMA INMEDIATAMENTE O UTILIZARÉ TAZER/FUERZA LETAL!"],
-["ABANDONAR AREA", "/me ¡ABANDONE EL ÁREA O SERÁ ARRESTADO (A) / DETENIDO (A)!"],
-["BALIZA", "/me POR NO SEGUIR MIS ÓRDENES, LE HE COLOCADO UN DISPOSITIVO DE RASTREO."],
-["DOCUMENTOS", "/me CIUDADANO PORFAVOR PERMITAME SUS DOCUMENTOS. "],
-["PRESENTACION", "/me HOLA, SOY EL (RANGO AQUÍ) (TU NOMBRE AQUÍ). SOY UN OFICIAL DE LA POLICÍA DEL ESTADO DE LA COSTA OESTE DE LAGUNA. ¿CÓMO LE PUEDO AYUDAR?"],
-["MAXIMO RESPETO", "/me MI MÁXIMO RESPETO SR(A) [ETIQUETA DE RANGO]. ¡SU NOMBRE, PRESENTÁNDOSE!"],
-["REGISTRAR DOCUMENTOS", "/do REGISTRANDO LOS DOCUMENTOS AL SOSPECHOSO."],
-["PUEDE RETIRARSE", "/me SOSPECHOSO LIMPIO. PUEDE RETIRARSE."],
-["DETENCION", "/me ¡ESTÁ SIENDO DETENIDO, NO ARRESTADO! ¡POR FAVOR, SÍGUEME!"],
-["ARRESTO", "/me [POLICÍA DE LAGUNA] CIUDADANO. USTED ESTÁ ARRESTADO. TIENE DERECHO A GUARDAR SILENCIO. TODO LO QUE DIGA PUEDE SER USADO EN SU CONTRA."],
-["ORDENES DE ARRESTO", "/me ¡HAS SIDO ARRESTADO PORQUE TIENES ÓRDENES DE ARRESTO! ¡USTED ESTÁ EN LA LISTA DE LOS MÁS BUSCADOS!"],
-["BODYCAM", "/do CONFIRMA QUE LA CÁMARA CORPORAL ESTÁ ACTIVADA."],
-["ZONA VERDE", "/me ¡ÚLTIMA ADVERTENCIA! ¡ABANDONA LA ZONA AHORA O SERÁS ACUSADO DE UN 1.7 Y 3.2! ¡ESTA ES UNA ZONA VERDE, NO UNA ZONA DE RECREO!"],
-["APAGUE EL MOTOR", "/me [POLICÍA DE LAGUNA] CIUDADANO, POR FAVOR, DETÉNGASE Y APAGUE EL MOTOR"],
+["MAXIMO RESPETO", "/me MI MÁXIMO RESPETO SR(A) [Rango actual] (¡SU NOMBRE,) PRESENTÁNDOSE!"],
+["DISPARAR / VDM", "/do ¡¡SACA EL ARMA & DISPARA A MIEMBROS DE PANDILLAS O CIVILES PARA PROTEGER A LOS SOLDADOS Y A MI MISMO O POR VDM!!"],
+["TASER", "/do ¡TASER TASER TASER! HE USADO TASER PARA CONTROLAR LA SITUACIÓN, POR FAVOR OBEDEZCA LAS ÓRDENES MILITARES."],
+["ARMA DE DEFENSA PERSONAL", "/do Abre el maletero del auto y saca un arma para defensa personal !SOLDADO DE VACACIONES!"],
+["ESTACIONAR VEHICULO", "/do SR. CIUDADANO, POR FAVOR ESTACIONE SU VEHÍCULO A UNA DISTANCIA SEGURA DEL PAVIMENTO Y VENGA A PIE PARA RESOLVER SUS DUDAS."],
+["GUARDE SUS ARMAS", "/do GUARDE SUS ARMAS O USAREMOS LA FUERZA LETAL (TIENE 5 SEGUNDOS)"],
+["PRESENTACION", "/me Hola sr(a), soy [RANGO] [NOMBRE] del Ejército de Laguna. Esta es un área restringida, ¿en qué puedo ayudarle?"],
+["10-4", "/flobby (10-4) ENTENDIDO"],
+["ENTRADA", "/flobby [RANGO] - ENTRADA"],
+["SALIDA", "/flobby [RANGO] - SALIDA"],
+["RECORDATORIO DE BASE", "/me Recuerda: Conducir un coche directamente a la puerta, correr con un arma abierta, correr por la base y trollear a los soldados infringe las reglas del juego de rol. ¡Pueden matarlos por esto si no tienen nada que hacer en la base, váyanse ahora! "],
+["MIEMBRO DE PANDILLA EN ZONA MILITAR", "/do ATENCION EL SR(A) FUE IDENTIFICADO COMO MIEMBRO DE UNA PANDILLA ESTA EN UN AREA RESTRINGIDA POR FAVOR ABANDONE LA ZONA MILITAR O USAREMOS FUERZA LETAL."],
+["1RA ADVERTENCIA", "/me (1ra Advertencia) Esta es una zona restringida. Si usted no tiene nada que hacer aquí, por favor, abandone la zona inmediatamente."],
+["2DA ADVERTENCIA", "/me (2da Advertencia) Aléjese del ingreso ahora mismo, Mantenga las manos visibles. El incumplimiento de esta orden será considerado una amenaza."],
+["ULTIMA ADVERTENCIA", "/me  (Última advertencia) ¡Esta es una zona restringida, se permite el uso de fuerza letal! ¡TIENEN 5 SEGUNDOS PARA RETIRARSE O SE USARÁ FUERZA LETAL!"],
+["FDB", "/flobby (FDB)"],
+["RAB", "/flobby (RAB)"],
+["REQUISITOS PARA UNIRSE", "/me PARA UNIRSE AL EJÉRCITO: DEBE SER NIVEL 6, TENER 18 AÑOS O MÁS, MICRÓFONO FUNCIONAL, NO TENER INFRACCIONES, SU NOMBRE DE RP DEBE COINCIDIR CON EL DE DISCORD, POSER EL CERTIFICADO DE ROL Y  DEBE HABLAR ESPAÑOL."],
+["5 SEGUNDOS PARA MARCHARSE", "/do SE LE HA PROPORCIONADO LA INFORMACIÓN. ESTA ES UN ÁREA RESTRINGIDA. ¡¡¡TIENE 5 SEGUNDOS PARA MARCHARSE!!!"],
+["CONTEO 5", "/me 5!"],
+["CONTEO 4", "/me 4!"],
+["CONTEO 3", "/me 3!"],
+["CONTEO 2", "/me 2!"],
+["CONTEO 1", "/me 1!"],
+["DISPAROS AL INTRUSO", "/do ¡0 DISPAROS AL INTRUSO!"],
+["REGLAS DEL EVENTO", "/flobby ¡REGLAS DEL EVENTO!: 1. No hablar con los muertos, 2. No curarse (solo al revivir o en HP), 3. No subirse a estructuras, 4. No disparar a través de las PAREDES o BUGUEAR MIRA, 5. No Ingresar a zonas seguras como RT o SC."],
+["SOLICITAR PATRULLAJE", "/flobby ¡¡¡SOLICITO PERMISO PARA PATRULLAR!!!"],
+["PATRULLAJE FINALIZADO", "/flobby ¡¡PATRULLAJE FINALIZADO!! "],
+["SOLICITAR JEEP DE MISION", "/flobby SOLICITO PERMISO PARA SACAR JEEP DE MISIÓN DIARIA!"],
 ].map(([label, text], i) => ({cat:"Macros", sub:"Macros Generales", code:`M${i+1}`, label, macroText:text, isMacro:true}));
 
+/* Sección desactivada — solo comentada, no borrada, para poder reactivarla después.
 const macrosCodigo10 = [
 ["10-4", "/flobby (10-4) ENTENDIDO."],
 ["10-6", "/flobby (10-6) ACTUALMENTE OCUPADO."],
@@ -1877,7 +1877,9 @@ const macrosCodigo10 = [
 ["CÓDIGO 3", "/flobby (CÓDIGO 3) LUCES Y SIRENAS ENCENDIDAS."],
 ["CÓDIGO 4", "/flobby (CÓDIGO 4) ESCENA DESPEJADA."],
 ].map(([label, text], i) => ({cat:"Macros", sub:"Macros Código 10", code:`MC${i+1}`, label, macroText:text, isMacro:true}));
+*/
 
+/* Sección desactivada — solo comentada, no borrada, para poder reactivarla después.
 const macrosInstruccion = [
 ["INSTRUCTOR", "/me ¡MI MÁXIMO RESPETO SR/A [rango] [nombre] [INSTRUCTOR DE ACADEMIA POLICIAL], PRESENTÁNDOSE!"],
 ["PPH", "/do Favor de colocar “PPH” en el chat en caso de comentarios y/o dudas."],
@@ -1889,49 +1891,22 @@ const macrosInstruccion = [
 ["INSTRUCCION ACTIVA", "/flobby NEGADO SR(A), TENEMOS INSTRUCCION ACTIVA, FAVOR DE ACUDIR A PISO 2 EN SALA DE REVISTA!"],
 ["REUNION INSTRUCTORES", "/flobby INSTRUCTORES DE ACADEMIA FAVOR DE ACUDIR A REUNIÓN EN [ubicacion]."],
 ].map(([label, text], i) => ({cat:"Macros", sub:"Macros de Instrucción", code:`MI${i+1}`, label, macroText:text, isMacro:true}));
+*/
 
-const macros = [...macrosGenerales, ...macrosCodigo10, ...macrosInstruccion];
+const macros = [...macrosGenerales /*, ...macrosCodigo10, ...macrosInstruccion */];
 
-// Vincula cada código 10 de la sección Reglas con su macro correspondiente (si existe)
-const macroByCode10 = {};
-macrosCodigo10.forEach(m => { macroByCode10[m.label] = m.macroText; });
-codigos10.forEach(r => {
-  if (macroByCode10[r.code]) {
-    r.copyMacro = macroByCode10[r.code];
-  }
-});
-
-const reglasBasicas = [
-// Conducta General
-{cat:"Reglas Básicas (Reclutas)", sub:"Conducta General", code:"R1", title:"PROHIBIDO usar fuerza bajo cualquier circunstancia (arrestos, esposas, armas, balizas y táser).", desc:"", punish:"Sanción disciplinaria."},
-{cat:"Reglas Básicas (Reclutas)", sub:"Conducta General", code:"R2", title:"PROHIBIDO desobedecer órdenes de superiores.", desc:"", punish:"Sanción disciplinaria."},
-{cat:"Reglas Básicas (Reclutas)", sub:"Conducta General", code:"R3", title:"OBLIGATORIO saludar a superiores utilizando \"Señor\" o \"Señora\".", desc:"", punish:"Sanción disciplinaria."},
-{cat:"Reglas Básicas (Reclutas)", sub:"Conducta General", code:"R4", title:"PROHIBIDO faltar el respeto a cualquier persona.", desc:"", punish:"Sanción disciplinaria."},
-{cat:"Reglas Básicas (Reclutas)", sub:"Conducta General", code:"R5", title:"PROHIBIDO solicitar promociones o evaluaciones antes de cumplir 3 días.", desc:"", punish:"Sanción disciplinaria."},
-{cat:"Reglas Básicas (Reclutas)", sub:"Conducta General", code:"R6", title:"PROHIBIDO sobornar o intentar influenciar a superiores.", desc:"", punish:"Sanción disciplinaria."},
-{cat:"Reglas Básicas (Reclutas)", sub:"Conducta General", code:"R7", title:"PROHIBIDO discutir, cuestionar o desafiar órdenes frente a civiles o personal.", desc:"", punish:"Sanción disciplinaria."},
-{cat:"Reglas Básicas (Reclutas)", sub:"Conducta General", code:"R8", title:"OBLIGATORIO mantener conducta profesional en todo momento.", desc:"", punish:"Sanción disciplinaria."},
-// Interacción y Comunicación
-{cat:"Reglas Básicas (Reclutas)", sub:"Interacción y Comunicación", code:"R9", title:"PROHIBIDO hablar con civiles o pandillas sin autorización.", desc:"", punish:"Sanción disciplinaria."},
-{cat:"Reglas Básicas (Reclutas)", sub:"Interacción y Comunicación", code:"R10", title:"PROHIBIDO mantener contacto directo o indirecto con pandillas.", desc:"", punish:"Sanción disciplinaria."},
-{cat:"Reglas Básicas (Reclutas)", sub:"Interacción y Comunicación", code:"R11", title:"PROHIBIDO salir del departamento sin autorización del superior a cargo.", desc:"", punish:"Sanción disciplinaria."},
-{cat:"Reglas Básicas (Reclutas)", sub:"Interacción y Comunicación", code:"R12", title:"PROHIBIDO acompañar a otro novato o civil sin permiso.", desc:"", punish:"Sanción disciplinaria."},
-{cat:"Reglas Básicas (Reclutas)", sub:"Interacción y Comunicación", code:"R13", title:"PROHIBIDO interrumpir modulaciones de radio.", desc:"", punish:"Sanción disciplinaria."},
-{cat:"Reglas Básicas (Reclutas)", sub:"Interacción y Comunicación", code:"R14", title:"PROHIBIDO ignorar llamadas por radio o Flobby de un superior.", desc:"", punish:"Sanción disciplinaria."},
-{cat:"Reglas Básicas (Reclutas)", sub:"Interacción y Comunicación", code:"R15", title:"OBLIGATORIO responder con claridad, respeto y brevedad por radio.", desc:"", punish:"Sanción disciplinaria."},
-{cat:"Reglas Básicas (Reclutas)", sub:"Interacción y Comunicación", code:"R16", title:"PROHIBIDO dar información del departamento a personas no autorizadas.", desc:"", punish:"Sanción disciplinaria."},
-// Movilidad y Áreas
-{cat:"Reglas Básicas (Reclutas)", sub:"Movilidad y Áreas", code:"R17", title:"PROHIBIDO sacar vehículos en círculos rojos en piso 0.", desc:"", punish:"Sanción disciplinaria."},
-{cat:"Reglas Básicas (Reclutas)", sub:"Movilidad y Áreas", code:"R18", title:"PROHIBIDO subir al primer piso o entrar a la cárcel sin autorización.", desc:"", punish:"Sanción disciplinaria."},
-{cat:"Reglas Básicas (Reclutas)", sub:"Movilidad y Áreas", code:"R19", title:"PROHIBIDO subir al segundo piso sin autorización para patrullaje callejero.", desc:"", punish:"Sanción disciplinaria."},
-{cat:"Reglas Básicas (Reclutas)", sub:"Movilidad y Áreas", code:"R20", title:"PROHIBIDO visitar tiendas sin la presencia de un supervisor.", desc:"", punish:"Sanción disciplinaria."},
-{cat:"Reglas Básicas (Reclutas)", sub:"Movilidad y Áreas", code:"R21", title:"OBLIGATORIO respetar señales, rutas y protocolos de tránsito.", desc:"", punish:"Sanción disciplinaria."},
-];
+// Vinculación de código 10 <-> macro desactivada junto con codigos10/macrosCodigo10 (ver arriba).
+// const macroByCode10 = {};
+// macrosCodigo10.forEach(m => { macroByCode10[m.label] = m.macroText; });
+// codigos10.forEach(r => {
+//   if (macroByCode10[r.code]) {
+//     r.copyMacro = macroByCode10[r.code];
+//   }
+// });
 
 // NOTA: "macros" ya NO se mezcla dentro de "rules". Tiene su propia sección.
 const rules = [
-...codigos10,
-...codigosCode,
+// ...codigos10, // desactivado junto con la sección codigos10 (ver arriba)
 ...infracciones,
 // 1. Términos Generales
 {cat:"Términos Generales", code:"1.1", title:"Definición del proyecto", desc:"ONESTATE es un proyecto de rol ambientado en un estado estadounidense.", punish:""},
@@ -2012,24 +1987,17 @@ const rules = [
 {cat:"Reglas de Bandas", code:"CLAN9", title:"Taser contra vehículos de trabajo", desc:"Usar taser contra jugadores en taxis/autobuses para sacarlos.", punish:"90 minutos de cárcel."},
 {cat:"Reglas de Bandas", code:"CLAN10", title:"Abuso de moneda de banda", desc:"Uso de bugs para obtener moneda de banda de forma deshonesta.", punish:"Confiscación de bienes o eliminación de la banda sin reembolso."},
 {cat:"Reglas de Bandas", code:"CLAN11", title:"Decisión de administración superior", desc:"La administración puede sancionar casos no especificados en la lista.", punish:""},
-// PD - Facción Policial
-{cat:"PD", code:"PD-1", title:"Acusaciones falsas contra civiles", desc:"Esposar, encarcelar o atacar (Taser/arma) a un civil sin motivo justificado.", punish:"Destitución del cargo + castigo según leyes estatales."},
-{cat:"PD", code:"PD-2", title:"Detención sin causa justificada", desc:"Detener y/o encarcelar a un civil sin causa.", punish:"Destitución del cargo + castigo según leyes estatales."},
-{cat:"PD", code:"PD-3", title:"Atacar civiles sin motivo", desc:"Usar armas, manos o taser contra civiles sin motivo justificado.", punish:"Destitución del cargo."},
-{cat:"PD", code:"PD-4", title:"Falta de respeto", desc:"Grosería, insultos o intolerancia hacia colegas o civiles.", punish:"1 reprimenda."},
-{cat:"PD", code:"PD-5", title:"Uso de fuerza sin previo aviso", desc:"Debe advertirse antes de disparar, usar taser o atacar. Ej: 'Señor, si no se detiene, usaré una pistola eléctrica'.", punish:"1 reprimenda."},
-{cat:"PD", code:"PD-6", title:"Incumplimiento de subordinación", desc:"No seguir órdenes de superiores.", punish:"1 reprimenda."},
-{cat:"PD", code:"PD-7", title:"Infracción de leyes estatales", desc:"Romper las reglas del servidor.", punish:"1 amonestación + sanción según ley estatal."},
-{cat:"PD", code:"PD-8", title:"Vehículos de la empresa para uso personal", desc:"Usar vehículos policiales fuera del servicio.", punish:"1 reprimenda."},
-{cat:"PD", code:"PD-9", title:"Vehículo personal en labores policiales", desc:"Realizar tareas policiales con vehículo propio.", punish:"1 reprimenda."},
-{cat:"PD", code:"PD-10", title:"Insultar a jugadores/empleados", desc:"Insultos fuera de contexto de rol.", punish:"1 reprimenda."},
-{cat:"PD", code:"PD-11", title:"Arrestar sin dar razón", desc:"Debe indicarse el motivo del arresto por voz o texto. Ej: 'Está arrestado por 3 infracciones civiles. Tiene derecho a guardar silencio'.", punish:"1 advertencia."},
-{cat:"PD", code:"PD-12", title:"No responder en Discord / inactividad", desc:"No responder mensajes, no participar en actividades o no seguir instrucciones de Staff Assist o liderazgo.", punish:"1 advertencia."},
-{cat:"PD", code:"PD-13", title:"Arrestar sin captura de pantalla", desc:"Al hacer búsqueda de personas, debe capturarse la lista de infracciones antes de iniciar.", punish:"1 advertencia."},
-{cat:"PD", code:"PD-14", title:"No dar información de arrestados", desc:"No proporcionar información sobre las personas arrestadas.", punish:"1 advertencia."},
-{cat:"PD", code:"PD-15", title:"RP inadecuado", desc:"No interpretar correctamente el rol de policía (usar 'Señor', 'Por favor', explicar motivo de arresto, etc).", punish:"1 advertencia."},
-{cat:"PD", code:"PD-16", title:"Escalado de sanciones", desc:"2 advertencias equivalen a 1 reprimenda. 3 reprimendas suponen destitución del cargo.", punish:""},
-...reglasBasicas,
+// Ejército - Reglas del Ejército de Laguna
+{cat:"Ejército", code:"1", title:"Actitud irrespetuosa hacia compañeros y civiles", desc:"", punish:"1 reprimenda o destitución del soldado (por decisión del líder)."},
+{cat:"Ejército", code:"2", title:"Dirigirse a los superiores sin \"Señor\"/\"Señora\"", desc:"Deben dirigirse a los superiores con \"Señor\"/\"Señora\".", punish:"1 alerta."},
+{cat:"Ejército", code:"3", title:"Corrupción", desc:"Se prohíbe cualquier tipo de corrupción: solicitar o aceptar sobornos (dinero, bienes o servicios) de miembros de la Facción del Ejército, policías o jugadores a cambio de bienes, dinero o servicios.", punish:"Destitución del soldado."},
+{cat:"Ejército", code:"4", title:"Uso de armas, fuerza física o equipo especial sin previo aviso", desc:"Una razón significativa incluye: amenaza a la vida y la salud de un soldado o de los ciudadanos de la zona; entrada no autorizada al territorio de una base militar.", punish:"1 reprimenda o despido del soldado (por decisión del líder)."},
+{cat:"Ejército", code:"5", title:"Uso no autorizado del vehículo especial \"Carrier\"", desc:"Los soldados no pueden utilizar un vehículo especial \"Carrier\" sin permiso de los generales, subalternos o del jefe.", punish:"1 advertencia."},
+{cat:"Ejército", code:"6", title:"Incumplimiento de la subordinación", desc:"No acatar las órdenes de los generales, subalternos o del jefe.", punish:"1 reprimenda o despido del empleado (por decisión del líder)."},
+{cat:"Ejército", code:"7", title:"Uso de vehículos de la empresa para fines personales", desc:"", punish:"1 reprimenda o despido del empleado (por decisión del líder)."},
+{cat:"Ejército", code:"8", title:"Incumplimiento de las normas del servidor", desc:"", punish:"1 reprimenda o despido del empleado (por decisión del líder)."},
+{cat:"Ejército", code:"9", title:"Salir de la Base Militar uniformado o con arma", desc:"Solo se puede salir de la base con permiso de los generales, subalternos o del líder.", punish:"1 reprimenda."},
+{cat:"Ejército", code:"10", title:"Escalado de sanciones", desc:"2 advertencias equivalen a 1 reprimenda. 3 amonestación implican la destitución del soldado.", punish:""},
 ];
 
 /* ============================================================
