@@ -648,7 +648,7 @@ async function notificarDiscord(env, embed) {
 }
 
 const COLOR_POR_DIVISION = {
-  "Academia Militar": 0xd4922a,
+  "Academia Militar": 0x3f7d32,
   // "División O.P.E.": 0x4ade80,
   // "División SWAT": 0x3b82f6,
   // "Centro de Mando": 0xffb84d,
@@ -703,7 +703,7 @@ async function manejarNoticias(request, env, payload) {
     await notificarDiscord(env, {
       title: `📢 Nueva noticia — ${nueva.division}`,
       description: recortar(nueva.texto, 1500),
-      color: COLOR_POR_DIVISION[nueva.division] || 0xd4922a,
+      color: COLOR_POR_DIVISION[nueva.division] || 0x3f7d32,
       image: nueva.imagen ? { url: nueva.imagen } : undefined,
       footer: { text: `Publicado por ${nueva.autor}` },
       timestamp: nueva.fecha,
@@ -757,7 +757,7 @@ async function manejarNoticias(request, env, payload) {
       await notificarDiscord(env, {
         title: `💬 Nuevo comentario — ${noticiaOriginal.division}`,
         description: `**${nombre}:** ${recortar(texto, 1000)}`,
-        color: COLOR_POR_DIVISION[noticiaOriginal.division] || 0xd4922a,
+        color: COLOR_POR_DIVISION[noticiaOriginal.division] || 0x3f7d32,
         footer: { text: `En la noticia: ${recortar(noticiaOriginal.texto, 80)}` },
         timestamp: new Date().toISOString(),
       });
