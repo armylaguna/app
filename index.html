@@ -706,46 +706,6 @@ h1 {
   line-height: 1.6;
   z-index: 1;
 }
-.siren-strip {
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  height: 3px;
-  background: linear-gradient(90deg, #22c55e, transparent 15%, transparent 85%, #86efac);
-  animation: sirenSweep 2.4s linear infinite;
-}
-@keyframes sirenSweep {
-  0%   { background: linear-gradient(90deg, #22c55e, transparent 20%, transparent 80%, #86efac); }
-  50%  { background: linear-gradient(90deg, #86efac, transparent 20%, transparent 80%, #22c55e); }
-  100% { background: linear-gradient(90deg, #22c55e, transparent 20%, transparent 80%, #86efac); }
-}
-.siren-glow-left, .siren-glow-right {
-  position: absolute;
-  bottom: 0;
-  width: 220px;
-  height: 140px;
-  pointer-events: none;
-  z-index: 0;
-  filter: blur(30px);
-  opacity: 0.35;
-}
-.siren-glow-left {
-  left: 0;
-  background: radial-gradient(circle at bottom left, #22c55e, transparent 70%);
-  animation: sirenPulseLeft 1.2s ease-in-out infinite;
-}
-.siren-glow-right {
-  right: 0;
-  background: radial-gradient(circle at bottom right, #86efac, transparent 70%);
-  animation: sirenPulseRight 1.2s ease-in-out infinite;
-}
-@keyframes sirenPulseLeft {
-  0%, 49% { opacity: 0.4; }
-  50%, 100% { opacity: 0.08; }
-}
-@keyframes sirenPulseRight {
-  0%, 49% { opacity: 0.08; }
-  50%, 100% { opacity: 0.4; }
-}
 .rule-header {
   margin-bottom: 4px;
 }
@@ -859,26 +819,6 @@ h1 {
   border-radius: 0;
   clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
   background: var(--bg);
-}
-.pd-banner-glow-tr, .pd-banner-glow-br {
-  position: absolute;
-  right: 0;
-  width: 200px;
-  height: 110px;
-  pointer-events: none;
-  z-index: 1;
-  filter: blur(28px);
-  opacity: 0.35;
-}
-.pd-banner-glow-tr {
-  top: 0;
-  background: radial-gradient(circle at top right, #22c55e, transparent 70%);
-  animation: sirenPulseLeft 1.2s ease-in-out infinite;
-}
-.pd-banner-glow-br {
-  bottom: 0;
-  background: radial-gradient(circle at bottom right, #86efac, transparent 70%);
-  animation: sirenPulseRight 1.2s ease-in-out infinite;
 }
 .academia-placeholder {
   position: relative;
@@ -1534,8 +1474,6 @@ thead th, th {
     </div>
   </div>
   <img class="pd-banner-photo" src="wspd_banner.png" alt="Oficiales Ejército de Laguna">
-  <div class="pd-banner-glow-tr"></div>
-  <div class="pd-banner-glow-br"></div>
 </div>
 
 <nav class="main-nav" id="mainNav">
@@ -1782,37 +1720,6 @@ const codigos10 = [
 ].map(([code, meaning]) => ({cat:"Códigos 10", code, title:meaning, desc:"", punish:""}));
 */
 
-const infracciones = [
-// Infracción Penal (Delitos Graves)
-{cat:"Infracciones", sub:"Infracción Penal (Delitos Graves)", code:"1.1", title:"Captura de instituciones estatales", desc:"Tomar instituciones del estado por la fuerza.", punish:"20 minutos de cárcel."},
-{cat:"Infracciones", sub:"Infracción Penal (Delitos Graves)", code:"1.2", title:"Toma de poder por la fuerza", desc:"Intentar tomar el poder de forma violenta.", punish:"20 minutos de cárcel."},
-{cat:"Infracciones", sub:"Infracción Penal (Delitos Graves)", code:"1.3", title:"Rehenes o secuestro", desc:"Tomar rehenes o secuestrar a un jugador.", punish:"20 minutos de cárcel."},
-{cat:"Infracciones", sub:"Infracción Penal (Delitos Graves)", code:"1.4", title:"Colisión fatal con peatón", desc:"Atropellar y matar a un peatón.", punish:"20 minutos de cárcel."},
-{cat:"Infracciones", sub:"Infracción Penal (Delitos Graves)", code:"1.5", title:"Robo frustrado", desc:"Intento de robo que no se completa.", punish:"20 minutos de cárcel."},
-{cat:"Infracciones", sub:"Infracción Penal (Delitos Graves)", code:"1.6", title:"Robo a un oficial de policía", desc:"Robar a un oficial de policía.", punish:"20 minutos de cárcel."},
-{cat:"Infracciones", sub:"Infracción Penal (Delitos Graves)", code:"1.7", title:"Entrada no coordinada a territorio protegido", desc:"Ingresar sin coordinación a zonas protegidas por la ley.", punish:"20 minutos de cárcel."},
-{cat:"Infracciones", sub:"Infracción Penal (Delitos Graves)", code:"1.8", title:"Colisión con peatón", desc:"Atropellar a un peatón (sin resultado fatal).", punish:"20 minutos de cárcel."},
-{cat:"Infracciones", sub:"Infracción Penal (Delitos Graves)", code:"1.9", title:"Disparo en lugar público", desc:"Disparar un arma en un lugar público.", punish:"20 minutos de cárcel."},
-{cat:"Infracciones", sub:"Infracción Penal (Delitos Graves)", code:"1.10", title:"Soborno a un oficial", desc:"Ofrecer o dar soborno a un oficial de policía.", punish:"20 minutos de cárcel."},
-{cat:"Infracciones", sub:"Infracción Penal (Delitos Graves)", code:"1.11", title:"Asesinato de civil o policía", desc:"Matar a un civil o a un oficial de policía.(Se agrega en automatico)", punish:"20 minutos de cárcel."},
-{cat:"Infracciones", sub:"Infracción Penal (Delitos Graves)", code:"1.12", title:"Agresión a un policía", desc:"Golpear a un oficial de policía.(Se agrega en automatico)", punish:"20 minutos de cárcel."},
-// Infracción Civil (Infracciones)
-{cat:"Infracciones", sub:"Infracción Civil (Infracciones)", code:"2.1", title:"Daño a propiedad del Estado", desc:"Causar daño a bienes/propiedad estatal.", punish:"10 minutos de cárcel."},
-{cat:"Infracciones", sub:"Infracción Civil (Infracciones)", code:"2.2", title:"Daño a propiedad privada", desc:"Causar daño o perjuicio a propiedad de otro jugador.", punish:"10 minutos de cárcel."},
-{cat:"Infracciones", sub:"Infracción Civil (Infracciones)", code:"2.3", title:"Llamadas falsas a emergencias", desc:"Llamadas falsas a la policía y/o servicios de emergencia.", punish:"10 minutos de cárcel."},
-{cat:"Infracciones", sub:"Infracción Civil (Infracciones)", code:"2.4", title:"Libertinaje", desc:"Música tras pedir que se apague, escupir en la cara, etc.", punish:"10 minutos de cárcel."},
-{cat:"Infracciones", sub:"Infracción Civil (Infracciones)", code:"2.5", title:"Amenazas de muerte/asesinato", desc:"Amenazar con matar o asesinar a alguien.", punish:"10 minutos de cárcel."},
-{cat:"Infracciones", sub:"Infracción Civil (Infracciones)", code:"2.6", title:"Insultar a un funcionario estatal", desc:"Insultar a un representante del Estado.", punish:"10 minutos de cárcel."},
-{cat:"Infracciones", sub:"Infracción Civil (Infracciones)", code:"2.7", title:"Extorsión", desc:"Extorsionar a otro jugador.", punish:"10 minutos de cárcel."},
-// Infracción Administrativa (5 minutos)
-{cat:"Infracciones", sub:"Infracción Administrativa (Delitos Menores)", code:"3.1", title:"Resistir el arresto", desc:"Resistirse a ser arrestado por un oficial.", punish:"5 minutos de cárcel."},
-{cat:"Infracciones", sub:"Infracción Administrativa (Delitos Menores)", code:"3.2", title:"Desobedecer a un oficial", desc:"No obedecer las órdenes de un oficial de policía.", punish:"5 minutos de cárcel."},
-{cat:"Infracciones", sub:"Infracción Administrativa (Delitos Menores)", code:"3.3", title:"Ayudar a resistir el arresto", desc:"Ayudar a otro jugador a resistirse a un arresto.", punish:"5 minutos de cárcel."},
-{cat:"Infracciones", sub:"Infracción Administrativa (Delitos Menores)", code:"3.4", title:"Violación de normas de tráfico", desc:"Conducir en sentido contrario, chocar postes, pasar semáforos en rojo.", punish:"5 minutos de cárcel."},
-{cat:"Infracciones", sub:"Infracción Administrativa (Delitos Menores)", code:"3.5", title:"Agresión a un civil", desc:"Golpear a un civil.", punish:"5 minutos de cárcel."},
-{cat:"Infracciones", sub:"Infracción Administrativa (Delitos Menores)", code:"3.6", title:"Negarse a presentar documentos", desc:"No mostrar identificación, documentos del coche o licencias de armas cuando se solicitan.", punish:"5 minutos de cárcel."},
-];
-
 const macrosGenerales = [
 ["MAXIMO RESPETO", "/me MI MÁXIMO RESPETO SR(A) [Rango actual] (¡SU NOMBRE,) PRESENTÁNDOSE!"],
 ["DISPARAR / VDM", "/do ¡¡SACA EL ARMA & DISPARA A MIEMBROS DE PANDILLAS O CIVILES PARA PROTEGER A LOS SOLDADOS Y A MI MISMO O POR VDM!!"],
@@ -1906,8 +1813,17 @@ const macros = [...macrosGenerales /*, ...macrosCodigo10, ...macrosInstruccion *
 
 // NOTA: "macros" ya NO se mezcla dentro de "rules". Tiene su propia sección.
 const rules = [
-// ...codigos10, // desactivado junto con la sección codigos10 (ver arriba)
-...infracciones,
+// Ejército - Reglas del Ejército de Laguna
+{cat:"Ejército", code:"1", title:"Actitud irrespetuosa hacia compañeros y civiles", desc:"", punish:"1 reprimenda o destitución del soldado (por decisión del líder)."},
+{cat:"Ejército", code:"2", title:"Dirigirse a los superiores sin \"Señor\"/\"Señora\"", desc:"Deben dirigirse a los superiores con \"Señor\"/\"Señora\".", punish:"1 alerta."},
+{cat:"Ejército", code:"3", title:"Corrupción", desc:"Se prohíbe cualquier tipo de corrupción: solicitar o aceptar sobornos (dinero, bienes o servicios) de miembros de la Facción del Ejército, policías o jugadores a cambio de bienes, dinero o servicios.", punish:"Destitución del soldado."},
+{cat:"Ejército", code:"4", title:"Uso de armas, fuerza física o equipo especial sin previo aviso", desc:"Una razón significativa incluye: amenaza a la vida y la salud de un soldado o de los ciudadanos de la zona; entrada no autorizada al territorio de una base militar.", punish:"1 reprimenda o despido del soldado (por decisión del líder)."},
+{cat:"Ejército", code:"5", title:"Uso no autorizado del vehículo especial \"Carrier\"", desc:"Los soldados no pueden utilizar un vehículo especial \"Carrier\" sin permiso de los generales, subalternos o del jefe.", punish:"1 advertencia."},
+{cat:"Ejército", code:"6", title:"Incumplimiento de la subordinación", desc:"No acatar las órdenes de los generales, subalternos o del jefe.", punish:"1 reprimenda o despido del empleado (por decisión del líder)."},
+{cat:"Ejército", code:"7", title:"Uso de vehículos de la empresa para fines personales", desc:"", punish:"1 reprimenda o despido del empleado (por decisión del líder)."},
+{cat:"Ejército", code:"8", title:"Incumplimiento de las normas del servidor", desc:"", punish:"1 reprimenda o despido del empleado (por decisión del líder)."},
+{cat:"Ejército", code:"9", title:"Salir de la Base Militar uniformado o con arma", desc:"Solo se puede salir de la base con permiso de los generales, subalternos o del líder.", punish:"1 reprimenda."},
+{cat:"Ejército", code:"10", title:"Escalado de sanciones", desc:"2 advertencias equivalen a 1 reprimenda. 3 amonestación implican la destitución del soldado.", punish:""},
 // 1. Términos Generales
 {cat:"Términos Generales", code:"1.1", title:"Definición del proyecto", desc:"ONESTATE es un proyecto de rol ambientado en un estado estadounidense.", punish:""},
 {cat:"Términos Generales", code:"1.2", title:"Responsabilidad del jugador", desc:"Desde el registro, el jugador conoce y es responsable de cumplir todas las reglas.", punish:""},
@@ -1987,17 +1903,7 @@ const rules = [
 {cat:"Reglas de Bandas", code:"CLAN9", title:"Taser contra vehículos de trabajo", desc:"Usar taser contra jugadores en taxis/autobuses para sacarlos.", punish:"90 minutos de cárcel."},
 {cat:"Reglas de Bandas", code:"CLAN10", title:"Abuso de moneda de banda", desc:"Uso de bugs para obtener moneda de banda de forma deshonesta.", punish:"Confiscación de bienes o eliminación de la banda sin reembolso."},
 {cat:"Reglas de Bandas", code:"CLAN11", title:"Decisión de administración superior", desc:"La administración puede sancionar casos no especificados en la lista.", punish:""},
-// Ejército - Reglas del Ejército de Laguna
-{cat:"Ejército", code:"1", title:"Actitud irrespetuosa hacia compañeros y civiles", desc:"", punish:"1 reprimenda o destitución del soldado (por decisión del líder)."},
-{cat:"Ejército", code:"2", title:"Dirigirse a los superiores sin \"Señor\"/\"Señora\"", desc:"Deben dirigirse a los superiores con \"Señor\"/\"Señora\".", punish:"1 alerta."},
-{cat:"Ejército", code:"3", title:"Corrupción", desc:"Se prohíbe cualquier tipo de corrupción: solicitar o aceptar sobornos (dinero, bienes o servicios) de miembros de la Facción del Ejército, policías o jugadores a cambio de bienes, dinero o servicios.", punish:"Destitución del soldado."},
-{cat:"Ejército", code:"4", title:"Uso de armas, fuerza física o equipo especial sin previo aviso", desc:"Una razón significativa incluye: amenaza a la vida y la salud de un soldado o de los ciudadanos de la zona; entrada no autorizada al territorio de una base militar.", punish:"1 reprimenda o despido del soldado (por decisión del líder)."},
-{cat:"Ejército", code:"5", title:"Uso no autorizado del vehículo especial \"Carrier\"", desc:"Los soldados no pueden utilizar un vehículo especial \"Carrier\" sin permiso de los generales, subalternos o del jefe.", punish:"1 advertencia."},
-{cat:"Ejército", code:"6", title:"Incumplimiento de la subordinación", desc:"No acatar las órdenes de los generales, subalternos o del jefe.", punish:"1 reprimenda o despido del empleado (por decisión del líder)."},
-{cat:"Ejército", code:"7", title:"Uso de vehículos de la empresa para fines personales", desc:"", punish:"1 reprimenda o despido del empleado (por decisión del líder)."},
-{cat:"Ejército", code:"8", title:"Incumplimiento de las normas del servidor", desc:"", punish:"1 reprimenda o despido del empleado (por decisión del líder)."},
-{cat:"Ejército", code:"9", title:"Salir de la Base Militar uniformado o con arma", desc:"Solo se puede salir de la base con permiso de los generales, subalternos o del líder.", punish:"1 reprimenda."},
-{cat:"Ejército", code:"10", title:"Escalado de sanciones", desc:"2 advertencias equivalen a 1 reprimenda. 3 amonestación implican la destitución del soldado.", punish:""},
+
 ];
 
 /* ============================================================
@@ -3010,10 +2916,7 @@ window.addEventListener('message', e => {
 /* El bloqueo de scroll de fondo al abrir un modal se sacó a pedido. */
 </script>
 
-<div class="siren-glow-left"></div>
-<div class="siren-glow-right"></div>
 <footer class="pd-footer">
-  <div class="siren-strip"></div>
   <p>Herramienta de referencia no oficial, hecha por y para jugadores del Ejército de Laguna (OneState RP).</p>
   <p>No afiliado ni respaldado oficialmente por ChillGaming, Ltd.</p>
   <p>Las imágenes y recursos visuales utilizados pertenecen a sus respectivos propietarios y se muestran únicamente con fines informativos y comunitarios.</p>
